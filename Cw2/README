@@ -1,0 +1,27 @@
+===========================================================================
+AUTOR: Jonasz Gawlik                                     Krakow, 23.03.2020
+===========================================================================
+
+* Zawartosc
+============
+
+Katalog zawiera programy z cwiczenia 2:
+---------------------------------------------------------------------------
+    1) Program "parent", ktory odpowiada za uruchomenie programu 
+       wypisujacego informacje o procesie, za pomoca funkcji "exec"
+
+    2) Program "child", ktory jest programem odpowiedzialnym za wypisane
+       informacji o danym procesie
+
+---------------------------------------------------------------------------
+
+* Jak uruchomic programy
+=========================
+
+>> By skompilowac wszystkie programy nalezy wpisac komende "make"
+
+>> By wlaczyc program nalezy wpisac komende "./PARENT $",
+   gdzie $ oznacza nazwe programu, ktory ma zostac uruchomiony
+   przez funkcje "exec" z programu "PARENT"
+
+>> By usunac zbedne pliki nalezy wpisac komende "make clean"

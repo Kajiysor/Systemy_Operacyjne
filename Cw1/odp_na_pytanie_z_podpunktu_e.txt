@@ -1,0 +1,4 @@
+Przy n-krotnym wywolaniu funkcji "fork()" powstanie 2^n procesów.
+
+Jest to spowodowane tym, ze przy kazdym wywolaniu funkcji "fork()"
+kazdy dzialajacy proces stworzy swoj proces potomny.

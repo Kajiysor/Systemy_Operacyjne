@@ -1,0 +1,37 @@
+===========================================================================
+AUTOR: Jonasz Gawlik                                     Krakow, 16.03.2020
+===========================================================================
+
+* Zawartosc
+============
+
+Katalog zawiera programy z cwiczenia 1:
+---------------------------------------------------------------------------
+    a) Program wypisujacy identyfikatory UID, GID, PID, PPID, PGID procesu
+
+    b) Program, ktory wywoluje funkcje "fork()" trzy raz, wypisuje
+       identyfikatory procesow oraz sprawia by proces macierzysty
+       czekal na zakonczenie procesow potomnych
+
+    c) Program, który działa tak samo jak ten w podpunkcie b) z ta
+       roznica, ze zamiast uzywac funkcji "wait()" uzywa funkcji
+       "sleep()"
+
+    d) Program, ktory za pomoca funkcji "sleep()" sprawia by procesy
+       wyswietlaly sie grupowane pokoleniami, ktorymi byly wywolywane
+
+    e) Program, ktory dziala jak ten w podpunckie b) z tym wyjatkiem, ze
+       kazdy proces potomny staje sie liderem swojej wlasnej grupy procesow
+       za pomoca funkcji "setpgid()"
+
+---------------------------------------------------------------------------
+
+* Jak uruchomic programy
+=========================
+
+>> By skompilowac wszystkie programy nalezy wpisac komende "make"
+
+>> By wlaczyc odpowiedni program nalezy wpisac komende "./1$", 
+    gdzie $ oznacza podpunkt zadania (np. "./1A", "./1E")
+
+>> By usunac zbedne pliki nalezy wpisac komende "make clean"

@@ -1,0 +1,5 @@
+"Ile procesow powstanie przy n-krotnym wywolaniu funkcji fork-exec jak wyzej i dlaczego?"
+
+Powstanie n takich procesow. Jest to spowodowane tym, ze przy kazdym wywolaniu fork()
+zostanie zostanie uruchomiony program przez funkcje exec(), gdy ten program zakonczy swoje
+dzialanie a tym samym nie powieli sie tak jak mialo to miejsce w cwiczeniu 1.
