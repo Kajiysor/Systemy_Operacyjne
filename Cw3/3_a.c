@@ -42,28 +42,36 @@ void customized_handler()
 
 int main(int argc, char *argv[])
 {
-    char *argument = argv[1];
-
-    if (strcmp(argument, "default") == 0)
+    if (argv[1] == NULL)
     {
+        printf("You have not specified a signal handler, running default\n");
         default_handler();
     }
-
-    else if (strcmp(argument, "ignore") == 0)
-    {
-        ignoring_handler();
-    }
-
-    else if (strcmp(argument, "custom") == 0)
-    {
-        customized_handler();
-    }
-
     else
     {
-        printf("You have provided wrong argument, please put default, ignore or custom as an argument!\n");
-        exit(1);
+        char *argument = argv[1];
+
+        if (strcmp(argument, "default") == 0)
+        {
+            default_handler();
+        }
+
+        else if (strcmp(argument, "ignore") == 0)
+        {
+            ignoring_handler();
+        }
+
+        else if (strcmp(argument, "custom") == 0)
+        {
+            customized_handler();
+        }
+        else
+        {
+            printf("You have provided wrong argument, please put default, ignore or custom as an argument!\n");
+            exit(1);
+        }
     }
+
 
     int PID = getpid();
     printf("PID: %d\n", PID);
