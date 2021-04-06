@@ -13,27 +13,27 @@ void my_signal_handler(int signum)
     sleep(1);
 }
 
-void ignoring_handler()
+void ignoring_handler(int sig_number)
 {
-    if (signal(SIGINT, SIG_IGN) == SIG_ERR)
+    if (signal(sig_number, SIG_IGN) == SIG_ERR)
     {
         perror("Function 'signal' had problem with ignoring SIGINT");
         exit(EXIT_FAILURE);
     }
 }
 
-void default_handler()
+void default_handler(int sig_number)
 {
-    if (signal(SIGINT, SIG_DFL) == SIG_ERR)
+    if (signal(sig_number, SIG_DFL) == SIG_ERR)
     {
         perror("Function 'signal' had problem with handling SIGINT");
         exit(EXIT_FAILURE);
     }
 }
 
-void customized_handler()
+void customized_handler(int sig_number)
 {
-    if (signal(SIGINT, my_signal_handler) == SIG_ERR)
+    if (signal(sig_number, my_signal_handler) == SIG_ERR)
     {
         perror("Function 'signal' had problem with handling SIGINT");
         exit(EXIT_FAILURE);
@@ -42,10 +42,14 @@ void customized_handler()
 
 int main(int argc, char *argv[])
 {
+    char *p;
+    int sig_number;
+    int conv = strtol(argv[2], &p, 10);
+    sig_number = conv;
     if (argv[1] == NULL)
     {
         printf("You have not specified a signal handler, running default\n");
-        default_handler();
+        //default_handler();
     }
     else
     {
@@ -53,17 +57,24 @@ int main(int argc, char *argv[])
 
         if (strcmp(argument, "default") == 0)
         {
-            default_handler();
+            //exit(2);
+            default_handler(sig_number);
         }
 
         else if (strcmp(argument, "ignore") == 0)
         {
-            ignoring_handler();
+            //exit(3);
+            ignoring_handler(sig_number);
         }
 
         else if (strcmp(argument, "custom") == 0)
         {
-            customized_handler();
+            customized_handler(sig_number);
+            // if (signal(sig_number, my_signal_handler) == SIG_ERR)
+            // {
+            //     perror("Function 'signal' had problem with handling SIGINT");
+            //     exit(EXIT_FAILURE);
+            // }
         }
         else
         {
@@ -72,14 +83,10 @@ int main(int argc, char *argv[])
         }
     }
 
-
     int PID = getpid();
     printf("PID: %d\n", PID);
     printf("\nI am waiting for a signal\n");
     pause();
-
-    
-
 
     return 0;
 }
