@@ -35,8 +35,8 @@ int main(int argc, char *argv[])
             printf("Child Process:\n");
             info();
         default:
-            wait(NULL);
             setpgid(id, getpid());
+            wait(NULL);
         }
     }
     return 0;

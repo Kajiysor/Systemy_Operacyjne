@@ -12,30 +12,41 @@
 
 int main(int argc, char *argv[])
 {
-    int id;
     char *p;
     int sig_number;
     int conv;
-    if (argv[1] != NULL && argv[2] != NULL)
+    int pgid;
+
+    if (argv[1] != NULL)
     {
-        conv = strtol(argv[2], &p, 10);
+        conv = strtol(argv[1], &p, 10);
         sig_number = conv;
     }
 
+    if (argv[1] == NULL)
+    {
+        printf("You have not specified a signal number, please provide the signal number as a second argument!\n");
+        exit(2);
+    }
+
     printf("Main proccess PID: %d\n", getpid());
-    switch (id = fork())
+    int id = fork();
+    switch (id)
     {
     case -1:
         perror("FORK ERROR");
         exit(1);
     case 0:
         sleep(1);
-        execl("./3A", "3A", argv[1], argv[2], NULL);
+        execl("./3C-2", "3C-2", argv[1], NULL);
         perror("exec1 error");
         _exit(2);
     default:
-        sleep(2);
-        kill(id, 0);
+        sleep(10);
+        pgid = getpgid(id);
+        //printf("FROM FIRST PROCESS - variable 'id': %d\n", id);
+        //printf("FROM FIRST PROCCESS - PGID TO KILL: %d\n", pgid);
+        kill(-pgid, 0);
         if (errno == ESRCH)
         {
             printf("Proccess doesn't exist\n");
@@ -43,7 +54,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-            kill(id, sig_number);
+            kill(-pgid, sig_number);
         }
         wait(NULL);
     }

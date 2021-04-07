@@ -7,9 +7,10 @@
 #include <unistd.h>
 #include <string.h>
 
-void my_signal_handler(int signum)
+void my_signal_handler(int sig_number)
 {
-    printf("\nI have been handled!\n");
+    extern const char *const sys_siglist[];
+    printf("\nI have handled signal number %d - %s!\n", sig_number, sys_siglist[sig_number]);
     sleep(1);
 }
 
@@ -17,7 +18,7 @@ void ignoring_handler(int sig_number)
 {
     if (signal(sig_number, SIG_IGN) == SIG_ERR)
     {
-        perror("Function 'signal' had problem with ignoring SIGINT");
+        perror("Function 'signal' had problem with ignoring signal");
         exit(EXIT_FAILURE);
     }
 }
@@ -26,7 +27,7 @@ void default_handler(int sig_number)
 {
     if (signal(sig_number, SIG_DFL) == SIG_ERR)
     {
-        perror("Function 'signal' had problem with handling SIGINT");
+        perror("Function 'signal' had problem with handling signal");
         exit(EXIT_FAILURE);
     }
 }
@@ -35,7 +36,7 @@ void customized_handler(int sig_number)
 {
     if (signal(sig_number, my_signal_handler) == SIG_ERR)
     {
-        perror("Function 'signal' had problem with handling SIGINT");
+        perror("Function 'signal' had problem with handling signal");
         exit(EXIT_FAILURE);
     }
 }
@@ -44,12 +45,21 @@ int main(int argc, char *argv[])
 {
     char *p;
     int sig_number;
-    int conv = strtol(argv[2], &p, 10);
-    sig_number = conv;
+    int conv;
+
+    if (argv[1] != NULL && argv[2] != NULL)
+    {
+        conv = strtol(argv[2], &p, 10);
+        sig_number = conv;
+    }
     if (argv[1] == NULL)
     {
-        printf("You have not specified a signal handler, running default\n");
-        //default_handler();
+        printf("You have not specified a signal handler, running default!\n");
+    }
+    else if (argv[2] == NULL)
+    {
+        printf("You have not specified a signal number, please provide the signal number as a second argument!\n");
+        exit(2);
     }
     else
     {
@@ -57,24 +67,17 @@ int main(int argc, char *argv[])
 
         if (strcmp(argument, "default") == 0)
         {
-            //exit(2);
             default_handler(sig_number);
         }
 
         else if (strcmp(argument, "ignore") == 0)
         {
-            //exit(3);
             ignoring_handler(sig_number);
         }
 
         else if (strcmp(argument, "custom") == 0)
         {
             customized_handler(sig_number);
-            // if (signal(sig_number, my_signal_handler) == SIG_ERR)
-            // {
-            //     perror("Function 'signal' had problem with handling SIGINT");
-            //     exit(EXIT_FAILURE);
-            // }
         }
         else
         {
@@ -83,9 +86,8 @@ int main(int argc, char *argv[])
         }
     }
 
-    int PID = getpid();
-    printf("PID: %d\n", PID);
-    printf("\nI am waiting for a signal\n");
+    printf("PID: %d\n", getpid());
+    printf("I am waiting for a signal\n");
     pause();
 
     return 0;
