@@ -12,10 +12,8 @@
 
 int main(int argc, char *argv[])
 {
-    char *p;
     int sig_number;
-    int conv = strtol(argv[1], &p, 10);
-    sig_number = conv;
+    sig_number = atoi(argv[1]);
     int n = 2;
     int i;
     int pid = getpid();
@@ -45,8 +43,13 @@ int main(int argc, char *argv[])
             //wait(NULL);
         }
     }
-    wait(NULL);
-    printf("IGNORING PROGRAM WAITING FOR SIGNAL");
-    pause();
+    int x;
+    for (i = 0; i < n; i++)
+    {
+        wait(&x);
+        printf("Status: %d\n", x);
+    }
+    //printf("IGNORING PROGRAM WAITING FOR SIGNAL");
+    //pause();
     return 0;
 }

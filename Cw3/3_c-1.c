@@ -12,15 +12,12 @@
 
 int main(int argc, char *argv[])
 {
-    char *p;
     int sig_number;
-    int conv;
     int pgid;
 
     if (argv[1] != NULL)
     {
-        conv = strtol(argv[1], &p, 10);
-        sig_number = conv;
+        sig_number = atoi(argv[1]);
     }
 
     if (argv[1] == NULL)
@@ -42,7 +39,7 @@ int main(int argc, char *argv[])
         perror("exec1 error");
         _exit(2);
     default:
-        sleep(10);
+        sleep(4);
         pgid = getpgid(id);
         //printf("FROM FIRST PROCESS - variable 'id': %d\n", id);
         //printf("FROM FIRST PROCCESS - PGID TO KILL: %d\n", pgid);

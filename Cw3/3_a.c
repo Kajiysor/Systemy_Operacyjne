@@ -43,14 +43,11 @@ void customized_handler(int sig_number)
 
 int main(int argc, char *argv[])
 {
-    char *p;
     int sig_number;
-    int conv;
 
     if (argv[1] != NULL && argv[2] != NULL)
     {
-        conv = strtol(argv[2], &p, 10);
-        sig_number = conv;
+        sig_number = atoi(argv[2]);
     }
     if (argv[1] == NULL)
     {
