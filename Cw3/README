@@ -1,0 +1,47 @@
+===========================================================================
+AUTOR: Jonasz Gawlik                                     Krakow, 07.04.2020
+===========================================================================
+
+* Zawartosc
+============
+
+Katalog zawiera programy z cwiczenia 3:
+---------------------------------------------------------------------------
+    a) Program do obslugi sygnalow, ktory mozna wywolac z uzyciem
+       argumentow: "default", "ignore", "custom" oraz numeru procesu,
+       ktory chcemy obsluzyc. Sygnaly mozna do niego przesylac za pomoca
+       klawiatury lub z poziomu powloki
+
+    b) Program, ktory poprzez funkcje exec(), uruchamia w procesiep potomnym
+       program z podpunktu a), a nastepnie sprawdza czy proces dziecko
+       istnieje i wysyla do niego sygnal poprzez funkcje kill()
+
+    c-1) Program, ktory tworzy proces potomny i uruchamia w nim program c-2)
+         oraz wysyla do grupy procesow swojego procesu potomnego sygnal
+         za pomoca funkcji kill()
+
+    c-2) Program, ktory ustawia ignorowanie sygnalu, staje sie liderem swojej
+         grupy procesow, tworzy kilka procesow potomnych, ktore uruchamiaja
+         program z podpunktu a) 
+
+
+---------------------------------------------------------------------------
+
+* Jak uruchomic programy
+=========================
+
+>> By skompilowac wszystkie programy nalezy wpisac komende "make"
+
+>> By wlaczyc odpowiedni program nalezy wpisac komende "./3$", 
+    gdzie $ oznacza podpunkt zadania (np. "./3A", "./3E")
+
+>> Programy z podpunktu a) i b) nalezy wywolac z dwoma argumentami
+    gdzie pierwszy z nich to instrukcja jak obsluzyc sygnal
+    ("default", "custom", "ignore"), a drugi to numer sygnalu,
+    ktory chcemy obsluzyc w danym programie
+
+>> Program z podpunktu c-1) nalezy wywolac tylko z jednym argumentem,
+    ktory odpowiada za numer sygnalu do obslugi; ten program automatycznie
+    wywoluje program z podpunktu c-2)    
+
+>> By usunac zbedne pliki nalezy wpisac komende "make clean"
