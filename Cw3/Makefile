@@ -18,5 +18,5 @@ compileAll: $(3_A) $(3_B) $(3_C) $(3_C-2)
 clean:
 	rm -f 3A
 	rm -f 3B
-	rm -f 3C-1
+	rm -f 3C
 	rm -f 3C-2
