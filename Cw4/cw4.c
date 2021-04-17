@@ -5,6 +5,8 @@
 #include<string.h>
 #include<stdlib.h>
 #include <sys/wait.h>
+#include <errno.h>
+#include <unistd.h>
  
 int main( int argc, char* argv[] ) {
 
@@ -13,7 +15,7 @@ int main( int argc, char* argv[] ) {
     char buffer[10];
     ssize_t num_bytes;
 
-    if (argv < 3){
+    if (argv[1] == NULL || argv[2] == NULL){
         printf("Please provide the source file as the first argument and the output file as a second argument!\n");
         exit(10);
     }
