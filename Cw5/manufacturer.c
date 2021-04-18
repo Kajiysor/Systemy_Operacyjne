@@ -10,8 +10,7 @@
  
 int main( int argc, char* argv[] ) {
 
-    int text_file_descriptor, id, fifo_file_descriptor;
-    int pipe_file_descriptor[2];
+    int text_file_descriptor, fifo_file_descriptor;
     char buffer[10];
     ssize_t num_bytes;
 
