@@ -1,0 +1,29 @@
+===========================================================================
+AUTOR: Jonasz Gawlik                                     Krakow, 18.04.2020
+===========================================================================
+
+* Zawartosc
+============
+
+Katalog zawiera program z cwiczenia 4:
+---------------------------------------------------------------------------
+a) Program cw4.c, w ktorym tworzony jest potok nienazwany, a nastepnie
+    wywolywana jest funkcja fork(), gdzie proces macierzysty jest
+    odpowiedzialny za odczytanie danych z pliku tekstowego, ktory podajemy
+    jako argument programu, a nastepnie przeslanie ich do potoku, z ktorego
+    to proces potomny odczytuje te dane, po czym zapisuje je w pliku
+    wyjsciowym, ktory podajemy jako drugi argument programu
+
+---------------------------------------------------------------------------
+
+* Jak uruchomic program
+=========================
+
+>> By skompilowac program nalezy wpisac komende "make"
+
+>> By wlaczyc program nalezy uzyc komendy ./CW4 $input $output gdzie
+    $input do plik tekstowy, z ktorego czytamy dane, a $output to 
+    plik, do ktorego dane zapisujemy
+
+>> By usunac skompilowany plik nalezy uzyc komendy "make clean"
+

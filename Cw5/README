@@ -1,0 +1,39 @@
+===========================================================================
+AUTOR: Jonasz Gawlik                                     Krakow, 18.04.2020
+===========================================================================
+
+* Zawartosc
+============
+
+Katalog zawiera programy z cwiczenia 5:
+---------------------------------------------------------------------------
+a) Program cw5.c, ktory tworzy potok FIFO, a nastepnie tworzy procesy
+    potomne, w ktorych to uruchamia programy manufacturer.c i 
+    consumer.c, ktore dzialaja tak jak w cwiczeniu 4 lecz z wykorzystaniem
+    potoku FIFO zamiast potoku nienazwanego
+
+b) Nie posiada wlasnego programu, lecz wywoluje sie go za pomoca komendy
+    "make Run", ktora tworzy z poziomu powloki potok FIFO, wlacza programy
+     manufacturer.c i consumer.c w osobnych instancjach terminalu 
+
+---------------------------------------------------------------------------
+
+* Jak uruchomic programy
+=========================
+
+>> By skompilowac wszystkie programy nalezy wpisac komende "make"
+
+>> By wlaczyc program cw5.c nalezy uzyc komendy ./CW5 $input $output $FIFO
+    gdzie $input oznacza plik, z ktorego czytamy dane, $output to plik,
+    do ktorego wysylamy dane a $FIFO to nazwa potoku FIFO, ktory tworzymy
+
+>> By wlaczyc program z podpunktu b) nalezy wpisac komende "make Run"
+
+>> By usunac potok FIFO stworzony na potrzeby podpunktu b) nalezy wpisac
+    komende "make removeFIFO"
+
+>> By usunac plik, do ktorego wysylamy dane w podpunkcie b) nalezy wpisac
+    "make removeOutput"
+
+>> By usunac skompiowane pliki nalezy uzyc komendy "make clean"
+
