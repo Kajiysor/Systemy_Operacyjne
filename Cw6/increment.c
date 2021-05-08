@@ -48,7 +48,7 @@ int main (int argc, char *argv[])
         if (using_critical_section)
         {
             semaphore_value(semaphore, &sem_value);
-            printf("[PID]: %d before Critical Section: %d\n", getpid(), sem_value);
+            printf("[PID]: %d before Critical Section [Semaphore]: %d\n", getpid(), sem_value);
             semaphore_P(semaphore);
         }
 
@@ -90,7 +90,7 @@ int main (int argc, char *argv[])
 
         sleep(rand() % 5 + 1);
 
-        if ((file = open(argv[2], O_WRONLY | O_CREAT, O_TRUNC, 0644)) == -1)
+        if ((file = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644)) == -1)
         {
             perror("Error opening file for writing!\n");
             _exit(EXIT_FAILURE);

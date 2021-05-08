@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     char temp[strlen("./") + strlen(argv[1]) + 1];
     increment_amount = atoi(argv[2]);
-    strcpy(semaphore_name, "/my_semaphore");
+    strcpy(semaphore_name, argv[5]);
 
     if (atoi(argv[6]) != 0)
     {
