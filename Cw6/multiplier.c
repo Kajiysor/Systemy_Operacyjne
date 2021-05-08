@@ -36,7 +36,8 @@ int main(int argc, char *argv[])
     if (argc != 7)
     {
         printf("Invalid amount of arguments, please provide correct arguments!\n \
-        Argumenty to: [0] Nazwa programu [1] Nazwa wywolywanego programu [2] Ilosc inkrementacji [3] Ilosc sekcji krytycznych [4] Uzywanie sekcji krytycznej (0/1)");
+        Argumenty to: [0] Nazwa programu [1] Nazwa wywolywanego programu [2] Ilosc inkrementacji \
+        [3] Ilosc sekcji krytycznych [4] Nazwa pliku [5] Nazwa semafora [6] Uzywanie sekcji krytycznej");
 
     }
 

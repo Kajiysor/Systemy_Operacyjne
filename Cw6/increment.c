@@ -15,7 +15,7 @@ int main (int argc, char *argv[])
     if (argc != 5)
     {
         printf("Invalid amount of arguments, please provide correct arguments!\n \
-        [0]..........FINISH THIS");
+        [0] nazwa_programu [1] ilosc_sekcji_krytycznych [2] plik_we_wy [3] nazwa_semafora [4] synchronizacja");
     }
 
     int reading, number, critical_section_amount, sem_value, file, i;
@@ -74,7 +74,7 @@ int main (int argc, char *argv[])
             default:
                 buffer[reading] = '\0';
                 semaphore_value(semaphore, &sem_value);
-                sprintf(message, ">>>> [PID]: %d [Semaphore]: %d [Number read]: %s [Critical Section]: %d", getpid(), sem_value, buffer, i);
+                sprintf(message, ">>>> [PID]: %d [Semaphore]: %d [Number read]: %s [Critical Section Number]: %d", getpid(), sem_value, buffer, i+1);
                 printf("%s\n", message);
         }
 
