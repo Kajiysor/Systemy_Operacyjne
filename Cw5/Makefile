@@ -25,7 +25,7 @@ clean:  $(CW5) $(MANUFACTURER) $(CONSUMER)
 	rm -f $(MANUFACTURER)
 	rm -f $(CONSUMER)
 
-Run: $(CW5) $(MANUFACTURER) $(CONSUMER) $(INPUT) $(OUTPUT)
+Run: $(CW5) $(MANUFACTURER) $(CONSUMER) $(INPUT)
 	mkfifo -m 0644 $(FIFO) \
 	& xterm -hold -title PRODUCENT -e ./MANUFACTURER $(INPUT) $(OUTPUT) $(FIFO) \
 	& xterm -hold -title KONSUMENT -e ./CONSUMER $(INPUT) $(OUTPUT) $(FIFO)
