@@ -105,6 +105,7 @@ int main (int argc, char *argv[]) {
             case 0:
                 /* akcja dla procesu potomnego */
 
+                //printf (temp, "%s%s", SCIEZKA, argv[1]);
                 sprintf (temp, "%s%s", SCIEZKA, argv[1]);
                 execl (temp, argv[1], argv[3], argv[4], argv[5], argv[6], NULL); // uruchom inkrementator
                 perror ("execl error");
@@ -154,6 +155,25 @@ int main (int argc, char *argv[]) {
             printf ("\nInkrementacja nie powiodła się! Liczba w pliku: %s, oczekiwano: %d\n", bufor, (atoi (argv[2]) * atoi (argv[3])));
         }
     }
+
+    // switch(odczyt)
+    // {
+    //     case -1:
+    //         printf("Błąd odczytu z pliku\n");
+    //         exit(EXIT_FAILURE);
+
+    //     case 0:
+    //         printf("Plik jest pusty! Coś poszło nie tak!\n");
+    //         exit(EXIT_FAILURE);
+
+    //     default:
+    //         bufor [odczyt] = '\0';
+    //         if (atoi(bufor) == (atoi (argv[2]) * atoi (argv[3]))) {
+    //             printf ("\nInkrementacja zakończona pomyślnie! Liczba w pliku: %s\n", bufor);
+    //         } else {
+    //             printf ("\nInkrementacja nie powiodła się! Liczba w pliku: %s, oczekiwano: %d\n", bufor, (atoi (argv[2]) * atoi (argv[3])));
+    //         }
+    // }        
 
     if (close (plik) == -1) {
         perror ("Błąd zamknięcia pliku");

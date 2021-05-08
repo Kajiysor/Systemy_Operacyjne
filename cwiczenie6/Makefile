@@ -42,7 +42,6 @@ $(EXEC2): $(OBJS2) $(LIBS1)
 .PHONY: run6
 
 run6: $(EXEC1) $(EXEC2)
-	clear
 	./$(EXEC1) $(EXEC2) $(ILOSC_PROCESOW) $(ILOSC_SEKCJI) $(PLIK_WE_WY) $(SEMAFOR) $(SYNCHRONIZUJ)
 
 .PHONY: clean tar
