@@ -1,0 +1,33 @@
+===========================================================================
+AUTOR: Jonasz Gawlik                                     Krakow, 08.05.2020
+===========================================================================
+
+* Zawartosc
+============
+
+Katalog zawiera programy oraz biblioteke z cwiczenia 6:
+---------------------------------------------------------------------------
+a) Program "multiplier.c", ktory odpowiada za powielenie procesow
+    realizujacych wzajemne wykluczenie
+
+b) Program "increment.c", ktory jest programem realizujacym wzajemnie
+    wykluczenie za pomoca semaforow
+
+c) Biblioteke "semaphores_lib", ktora zawiera proste funkcje odpowiedzalne
+    za obsluge semaforow
+
+---------------------------------------------------------------------------
+
+* Jak uruchomic programy
+=========================
+
+>> By skompilowac wszystkie programy nalezy wpisac komende "make"
+
+>> By uruchomic program nalezy wpisac komende "make Run"
+
+>> By skompilowac i uruchomic program nalezy wpisac komende "make CompileAndRun"
+
+>> By usunac skompilowane pliki nalezy uzyc komendy "make clean"
+
+>> By zarchiwizowac i skompresowac pliki z folderu nalezy wpisac komende
+    "make tar"

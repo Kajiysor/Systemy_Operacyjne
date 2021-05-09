@@ -15,13 +15,12 @@ int main(int argc, char *argv[])
     if (argc != 5)
     {
         printf("Invalid amount of arguments, please provide correct arguments!\n \
-        [0] nazwa_programu [1] ilosc_sekcji_krytycznych [2] plik_we_wy [3] nazwa_semafora [4] synchronizacja");
+        [1] Amount of critical sections [2] Text file name [3] Semaphore name [4] Using critical section (0/1)");
     }
 
     int reading, number, critical_section_amount, sem_value, file, i;
     char buffer[100];
     char message[200];
-    //char semaphore_name[13] = "/my_semaphore";
     bool using_critical_section;
     sem_t *semaphore;
 
@@ -43,7 +42,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < critical_section_amount; i++)
     {
         srand(time(NULL));
-        sleep(rand() % 5 + 1);
+        sleep(rand() % 3 + 1);
 
         if (using_critical_section)
         {
@@ -88,7 +87,7 @@ int main(int argc, char *argv[])
         number++;
         sprintf(buffer, "%d", number);
 
-        sleep(rand() % 5 + 1);
+        sleep(rand() % 3 + 1);
 
         if ((file = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644)) == -1)
         {

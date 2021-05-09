@@ -33,11 +33,11 @@ void INT_signal_handler(int signal)
 
 int main(int argc, char *argv[])
 {
-    if (argc != 7)
+    if (argc != 5)
     {
         printf("Invalid amount of arguments, please provide correct arguments!\n \
-        Argumenty to: [0] Nazwa programu [1] Nazwa wywolywanego programu [2] Ilosc inkrementacji \
-        [3] Ilosc sekcji krytycznych [4] Nazwa pliku [5] Nazwa semafora [6] Uzywanie sekcji krytycznej");
+        Argumenty to: [1] Name of executable [2] Amount of increments \
+        [3] Amount of critical sections [4] Using critical section (0/1)");
     }
 
     if (atexit(exit_function) != 0)
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 
     increment_amount = atoi(argv[2]);
 
-    if (atoi(argv[6]) != 0)
+    if (atoi(argv[4]) != 0)
     {
         using_critical_section = true;
     }
@@ -101,7 +101,7 @@ int main(int argc, char *argv[])
             exit(EXIT_FAILURE);
 
         case 0:
-            execl(argv[1], argv[1], argv[3], "numer.txt", argv[5], argv[6], NULL);
+            execl(argv[1], argv[1], argv[3], "numer.txt", semaphore_name, argv[4], NULL);
             perror("Exec error!\n");
             _exit(EXIT_FAILURE);
             break;
@@ -138,13 +138,13 @@ int main(int argc, char *argv[])
 
     default:
         buffer[reading] = '\0';
-        if (atoi(buffer) == (atoi(argv[2]) * atoi(argv[3])))
+        if (atoi(buffer) == (increment_amount * atoi(argv[3])))
         {
-            printf("Incrementing successfull!\n");
+            printf("Incrementing successfull! Number in file: %s\n", buffer);
         }
         else
         {
-            printf("Incrementing failed!\n");
+            printf("Incrementing failed! Number in file: %s, expecter number: %d\n", buffer, (increment_amount * atoi(argv[3])));
         }
     }
 
