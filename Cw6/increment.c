@@ -9,7 +9,7 @@
 #include <semaphore.h>
 #include "semaphores_lib.h"
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 
     if (argc != 5)
@@ -35,7 +35,7 @@ int main (int argc, char *argv[])
         using_critical_section = false;
     }
 
-    if(using_critical_section)
+    if (using_critical_section)
     {
         semaphore = open_semaphore(argv[3]);
     }
@@ -43,7 +43,7 @@ int main (int argc, char *argv[])
     for (i = 0; i < critical_section_amount; i++)
     {
         srand(time(NULL));
-        sleep(rand()% 5 + 1);
+        sleep(rand() % 5 + 1);
 
         if (using_critical_section)
         {
@@ -61,21 +61,21 @@ int main (int argc, char *argv[])
         }
 
         reading = read(file, &buffer, 10);
-        
-        switch(reading)
+
+        switch (reading)
         {
-            case -1:
-                printf("Error reading from the file!\n");
-                _exit(EXIT_FAILURE);
+        case -1:
+            printf("Error reading from the file!\n");
+            _exit(EXIT_FAILURE);
 
-            case 0:
-                break;
+        case 0:
+            break;
 
-            default:
-                buffer[reading] = '\0';
-                semaphore_value(semaphore, &sem_value);
-                sprintf(message, ">>>> [PID]: %d [Semaphore]: %d [Number read]: %s [Critical Section Number]: %d", getpid(), sem_value, buffer, i+1);
-                printf("%s\n", message);
+        default:
+            buffer[reading] = '\0';
+            semaphore_value(semaphore, &sem_value);
+            sprintf(message, ">>>> [PID]: %d [Semaphore]: %d [Number read]: %s [Critical Section Number]: %d", getpid(), sem_value, buffer, i + 1);
+            printf("%s\n", message);
         }
 
         if (close(file) == -1)
@@ -113,7 +113,6 @@ int main (int argc, char *argv[])
             semaphore_V(semaphore);
             semaphore_value(semaphore, &sem_value);
             printf("[PID]: %d after Critical Section [Semaphore]: %d\n", getpid(), sem_value);
-
         }
     }
 
