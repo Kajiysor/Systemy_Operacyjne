@@ -18,7 +18,7 @@
 #define CONSUMER_SEMAPHORE "/consumer_semaphore"
 #define OUTPUT "output"
 #define INPUT "input"
-#define SHARED_MEMORY_NAME "producer_consumer_shared_memory"
+#define SHARED_MEMORY_NAME "/producer_consumer_shared_memory"
 
 typedef struct
 {
@@ -104,10 +104,15 @@ int main(int argc, char *argv[])
 
     for (int j = 0; j < 2; j++)
     {
-        wait(NULL);
+        if (wait(NULL) == -1)
+        {
+            perror("Wait function error!\n");
+            exit(EXIT_FAILURE);
+        }
     }
 
     close_shared_memory(shared_memory_desc);
+    //delete_shared_memory(SHARED_MEMORY_NAME);
 
     return 0;
 }
