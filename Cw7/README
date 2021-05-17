@@ -1,0 +1,44 @@
+===========================================================================
+AUTOR: Jonasz Gawlik                                     Krakow, 15.05.2020
+===========================================================================
+
+* Zawartosc
+============
+
+Katalog zawiera programy oraz biblioteke z cwiczenia 7:
+---------------------------------------------------------------------------
+a) Program "cw7.c", ktory odpowiada za uruchomienie programow "producer.c"
+    i "consumer.c"
+
+b) Program "producer.c", ktory jest odpowiedzialny za wyprodukowanie informacji
+
+c) Program "consumer.c", ktory jest odpowiedzialny za odbior informacji 
+
+c) Biblioteke "semaphores_lib", ktora zawiera proste funkcje odpowiedzalne
+    za obsluge semaforow
+
+d) Biblioteke "shared_memory, ktora zawiera proste funkcje odpowiedzialne
+    za obsluge pamieci dzielonej
+
+---------------------------------------------------------------------------
+
+* Jak uruchomic programy
+=========================
+
+>> By skompilowac wszystkie programy nalezy wpisac komende "make compileAll"
+
+>> By uruchomic program nalezy wpisac komende "make run"
+
+>> By uruchomic program z uzyciem biblioteki statycznej
+    nalezy wpisac komende "make runStatic"
+
+>> By uruchomic program z uzyciem biblioteki dynamicznej sposobem 1
+    nalezy wpisac "make runDynamic1"
+
+>> By uruchomic program z uzyciem biblioteki dynamicznej sposobem 2
+    nalezy wpisac "make runDynamic2"
+
+>> By usunac skompilowane pliki nalezy uzyc komendy "make clean"
+
+>> By zarchiwizowac i skompresowac pliki z folderu nalezy wpisac komende
+    "make tar"
