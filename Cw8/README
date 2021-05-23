@@ -1,0 +1,31 @@
+===========================================================================
+AUTOR: Jonasz Gawlik                                     Krakow, 21.05.2020
+===========================================================================
+
+* Zawartosc
+============
+
+Katalog zawiera programy oraz biblioteke z cwiczenia 7:
+---------------------------------------------------------------------------
+a) Program "server.c", ktory odpowiada za odebranie, obsluzenie i odeslanie
+    dzialania przesylanego przez programy "client.c"
+
+b) Program "client.c", ktory odpowiada za odczytanie dzialania podanego
+    przez uzytkownika, przeslanie go do serwera i odebranie wyniku
+
+c) Biblioteke "queue", ktora zawiera proste funkcje odpowiedzalne
+    za obsluge funkcji zwiazanych z kolejkami
+
+---------------------------------------------------------------------------
+
+* Jak uruchomic programy
+=========================
+
+>> By skompilowac wszystkie programy nalezy wpisac komende "make compileAll"
+
+>> By uruchomic program nalezy wpisac komende "make Run"
+
+>> By usunac skompilowane pliki nalezy uzyc komendy "make clean"
+
+>> By zarchiwizowac i skompresowac pliki z folderu nalezy wpisac komende
+    "make tar"
