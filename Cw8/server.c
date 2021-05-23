@@ -19,7 +19,8 @@ void my_sig_handler(int signal)
 
 int main()
 {
-    int client_PID, number1, number2, result;
+    int client_PID;
+    float number1, number2, result;
     char operator;
     char message[MESSAGE_SIZE];
     char result_s[MESSAGE_SIZE];
@@ -49,29 +50,29 @@ int main()
     {
         queue_receive(queue_desc, message, NULL);
 
-        sscanf(message, "[%d] %d%c%d", &client_PID, &number1, &operator, & number2);
+        sscanf(message, "[%d] %f%c%f", &client_PID, &number1, &operator, & number2);
 
-        printf("Received request from [%d] ==> %d %c %d\n", client_PID, number1, operator, number2);
+        printf("Received request from [%d] ==> %f %c %f\n", client_PID, number1, operator, number2);
 
         if (operator== '+')
         {
             result = number1 + number2;
-            sprintf(result_s, "%d", result);
+            sprintf(result_s, "%f", result);
         }
         else if (operator== '-')
         {
             result = number1 - number2;
-            sprintf(result_s, "%d", result);
+            sprintf(result_s, "%f", result);
         }
         else if (operator== '*')
         {
             result = number1 * number2;
-            sprintf(result_s, "%d", result);
+            sprintf(result_s, "%f", result);
         }
         else if (operator== '/' || operator== ':')
         {
             result = number1 / number2;
-            sprintf(result_s, "%d", result);
+            sprintf(result_s, "%f", result);
         }
         else
         {
