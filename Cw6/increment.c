@@ -9,19 +9,18 @@
 #include <semaphore.h>
 #include "semaphores_lib.h"
 
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 
     if (argc != 5)
     {
         printf("Invalid amount of arguments, please provide correct arguments!\n \
-        [0] nazwa_programu [1] ilosc_sekcji_krytycznych [2] plik_we_wy [3] nazwa_semafora [4] synchronizacja");
+        [1] Amount of critical sections [2] Text file name [3] Semaphore name [4] Using critical section (0/1)");
     }
 
     int reading, number, critical_section_amount, sem_value, file, i;
     char buffer[100];
     char message[200];
-    //char semaphore_name[13] = "/my_semaphore";
     bool using_critical_section;
     sem_t *semaphore;
 
@@ -35,7 +34,7 @@ int main (int argc, char *argv[])
         using_critical_section = false;
     }
 
-    if(using_critical_section)
+    if (using_critical_section)
     {
         semaphore = open_semaphore(argv[3]);
     }
@@ -43,7 +42,7 @@ int main (int argc, char *argv[])
     for (i = 0; i < critical_section_amount; i++)
     {
         srand(time(NULL));
-        sleep(rand()% 5 + 1);
+        sleep(rand() % 3 + 1);
 
         if (using_critical_section)
         {
@@ -61,21 +60,21 @@ int main (int argc, char *argv[])
         }
 
         reading = read(file, &buffer, 10);
-        
-        switch(reading)
+
+        switch (reading)
         {
-            case -1:
-                printf("Error reading from the file!\n");
-                _exit(EXIT_FAILURE);
+        case -1:
+            printf("Error reading from the file!\n");
+            _exit(EXIT_FAILURE);
 
-            case 0:
-                break;
+        case 0:
+            break;
 
-            default:
-                buffer[reading] = '\0';
-                semaphore_value(semaphore, &sem_value);
-                sprintf(message, ">>>> [PID]: %d [Semaphore]: %d [Number read]: %s [Critical Section Number]: %d", getpid(), sem_value, buffer, i+1);
-                printf("%s\n", message);
+        default:
+            buffer[reading] = '\0';
+            semaphore_value(semaphore, &sem_value);
+            sprintf(message, ">>>> [PID]: %d [Semaphore]: %d [Number read]: %s [Critical Section Number]: %d", getpid(), sem_value, buffer, i + 1);
+            printf("%s\n", message);
         }
 
         if (close(file) == -1)
@@ -88,7 +87,7 @@ int main (int argc, char *argv[])
         number++;
         sprintf(buffer, "%d", number);
 
-        sleep(rand() % 5 + 1);
+        sleep(rand() % 3 + 1);
 
         if ((file = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0644)) == -1)
         {
@@ -113,7 +112,6 @@ int main (int argc, char *argv[])
             semaphore_V(semaphore);
             semaphore_value(semaphore, &sem_value);
             printf("[PID]: %d after Critical Section [Semaphore]: %d\n", getpid(), sem_value);
-
         }
     }
 

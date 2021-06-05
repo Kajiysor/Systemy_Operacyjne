@@ -1,50 +1,40 @@
 DIR = `basename $(CURDIR)`
+COMP = gcc
+FLAGS = -pthread -Wall -std=c99 -pedantic -O
 
-NAME1 = multiplier
-NAME2 = increment
-LIB1 = semaphores_lib
-ILOSC_PROCESOW = 2
-ILOSC_SEKCJI = 2
-PLIK_WE_WY = numer.txt
-SEMAFOR = /my_semaphore
-SYNCHRONIZUJ = 1
+NAME1 = multiplier.c
+NAME2 = increment.c
+LIB = semaphores_lib.c
+PROCESS_AMOUNT = 2
+SECTION_AMOUNT = 2
+USING_CRITICAL_SECTION = 1
 
-EXEC1  = $(NAME1).x
-EXEC2  = $(NAME2).x
+EXEC1  = MULTIPLIER
+EXEC2  = INCREMENT
 
-OBJS1  = $(NAME1).o
-OBJS2  = $(NAME2).o
-
-LIBS1  = $(LIB1).c
-
-CFLAGS = -pthread -Wall -std=c99 -pedantic -O
-LFLAGS = -pthread -Wall -std=c99 -pedantic -O
-
-CO = gcc
-LD = $(CO)
-
-%.o: %.c
-	$(CO) $(CFLAGS) -c $<
 
 .PHONY: all
-all: $(EXEC1)
+all: $(NAME1) $(NAME2) $(LIB)
+	$(COMP) -o $(EXEC1) $(FLAGS) $(NAME1) $(LIB)
+	$(COMP) -o $(EXEC2) $(FLAGS) $(NAME2) $(LIB)
 
-$(EXEC1): $(OBJS1) $(LIBS1) 
-	$(LD) -o $@ $(LFLAGS) $^
+.PHONY: Run
 
-$(EXEC2): $(OBJS2) $(LIBS1) 
-	$(LD) -o $@ $(LFLAGS) $^
+Run: $(EXEC1) $(EXEC2)
+	./$(EXEC1) $(EXEC2) $(PROCESS_AMOUNT) $(SECTION_AMOUNT) $(USING_CRITICAL_SECTION)
 
-.PHONY: run6
-
-run6: $(EXEC1) $(EXEC2)
+.PHONY: CompileAndRun
+CompileAndRun: $(NAME1) $(NAME2) $(LIB)
+	$(COMP) -o $(EXEC1) $(FLAGS) $(NAME1) $(LIB)
+	$(COMP) -o $(EXEC2) $(FLAGS) $(NAME2) $(LIB)
 	clear
-	./$(EXEC1) $(EXEC2) $(ILOSC_PROCESOW) $(ILOSC_SEKCJI) $(PLIK_WE_WY) $(SEMAFOR) $(SYNCHRONIZUJ)
+	./$(EXEC1) $(EXEC2) $(PROCESS_AMOUNT) $(SECTION_AMOUNT) $(USING_CRITICAL_SECTION)
 
-.PHONY: clean tar
+.PHONY: clean
 
-clean:                                                     
-	rm -f *.o  *~ *.a *.so *.x core core* a.out; rm -rf ${LIB_DIR}
+clean: $(EXEC1) $(EXEC2)
+	rm -f $(EXEC1)
+	rm -f $(EXEC2)
 
-tar: clean
+tar:
 	(cd ../; tar -cvzf $(DIR).tar.gz  $(DIR) )
