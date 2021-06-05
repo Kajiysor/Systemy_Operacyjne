@@ -1,0 +1,26 @@
+===========================================================================
+AUTOR: Jonasz Gawlik                                     Krakow, 03.06.2020
+===========================================================================
+
+* Zawartosc
+============
+
+Katalog zawiera program oraz biblioteke z cwiczenia 9:
+---------------------------------------------------------------------------
+a) Program "cw9.c", ktory zajmuje sie problemem wzajemnego wykluczania
+    za pomoca mutexow i watkow
+
+b) Biblioteke "threads", ktora zawiera funkcje odpowiedzialne za obsluge
+    watkow i mutexow
+
+---------------------------------------------------------------------------
+
+* Instrukcje
+=========================
+
+>> By uruchomic program nalezy wpisac komende "make Run"
+
+>> By usunac skompilowane pliki nalezy uzyc komendy "make clean"
+
+>> By zarchiwizowac i skompresowac pliki z folderu nalezy wpisac komende
+    "make tar"
