@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
     int file, i;
     int increment_amount;
 
-    char temp[strlen("./") + strlen(argv[1]) + 1];
+    //char temp[strlen("./") + strlen(argv[1]) + 1];
     increment_amount = atoi(argv[2]);
     strcpy(semaphore_name, argv[5]);
 
@@ -105,8 +105,8 @@ int main(int argc, char *argv[])
                 exit(EXIT_FAILURE);
 
             case 0:
-                 sprintf(temp, "%s%s", "./", argv[1]);
-                 execl(temp, argv[1], argv[3], argv[4], argv[5], argv[6], NULL);
+                 //sprintf(temp, "%s%s", "./", argv[1]);
+                 execl(argv[1], argv[1], argv[3], argv[4], argv[5], argv[6], NULL);
                  perror("Exec error!\n");
                  _exit(EXIT_FAILURE);
                 break;
